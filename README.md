@@ -1,4 +1,4 @@
-# DevOps exercise AWS 02: Infrastructure-As-Code
+# DevOps exercise AWS 04: Infrastructure-As-Code
 
 ## Introduction
 
@@ -39,5 +39,5 @@ Pre-install `docker` software on the instance. When `docker run -d -p80:80 -p443
 
 1. Fork the repo
 2. Commit everything that you do in your fork
-3. Create a pull request with your solution. Your pull request should include all source code which you used to create your solution.
+3. Give us a link to your fork
 4. Provide meaningful comments with your commits
