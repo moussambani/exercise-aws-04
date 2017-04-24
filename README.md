@@ -11,7 +11,7 @@ AWS resources and infrastructure should always be created using a configuration 
 3. The instance must allow login via SSH, but only from a definable IP or IP range (*in CIDR notation*) and must require an AWS `Key Pair`.
 4. **Inputs:** The configuration code should accept two parameters:
   * The IP or IP range (*in CIDR notation*) for allowing SSH to the instance
-  * The AWS Region to install the resources in (Dev's notes: Cloudformation doesn't support selecting regions from inside a template. Resources are always created in the region where you are using Cloudformation from, so for instance if you want your resources to be created in Canada you have to access Cloudformation through the following URL: https://ca-central-1.console.aws.amazon.com)
+  * The AWS Region to install the resources in (Dev's notes: Cloudformation doesn't support selecting regions from inside a template. Resources are always created in the region where you are using Cloudformation from, so for instance if you want your resources to be created in Canada you have to access Cloudformation through the following URL: https://ca-central-1.console.aws.amazon.com/cloudformation)
 5. **Outputs:** The configuration code should output the Public IP of the created EC2 instance
 6. Document how to create and how to destroy the AWS resources.
 
