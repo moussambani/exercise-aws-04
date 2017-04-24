@@ -1,6 +1,6 @@
 {
    "AWSTemplateFormatVersion":"2010-09-09",
-   "Description":"Template for setting up an EC2 container of type t2.micro with a security group which allows SSH access from an IP range supplied in a paramater and allowing all access via the ports 80 and 443.",
+   "Description":"Template for setting up an EC2 container of type t2.micro with a security group which allows SSH access from an IP range supplied in a paramater and allowing all access via the ports 80 and 443. Additionally Docker is pre-installed.",
    "Parameters":{
          "SSHLocation":{
          "Description":"The IP address range that can be used to SSH to the EC2 instances",
@@ -64,6 +64,30 @@
    "Resources":{
       "EC2Instance":{
          "Type":"AWS::EC2::Instance",
+         "Metadata":{
+            "AWS::CloudFormation::Init":{
+               "config":{
+                  "commands":{
+                     "1_update":{
+                        "command":"sudo yum update -y",
+                        "waitAfterCompletion":"0"
+                     },
+                     "2_install_docker":{
+                        "command":"sudo yum install -y docker",
+                        "waitAfterCompletion":"0"
+                     },
+                     "3_start_docker_service":{
+                        "command":"sudo service docker start",
+                        "waitAfterCompletion":"0"
+                     },
+                     "4_add_ec2-user_to_docker_group":{
+                        "command":"sudo usermod -a -G docker ec2-user",
+                        "waitAfterCompletion":"0"
+                     }
+                  }
+               }
+            }
+         },
          "Properties":{
             "InstanceType":"t2.micro",
              "SecurityGroups":[
@@ -76,6 +100,28 @@
                "Fn::FindInMap":[
                   "AWSRegionArch2AMI", { "Ref":"AWS::Region" }, "value"
                ]
+            },
+            "UserData":{
+               "Fn::Base64":{
+                  "Fn::Join":[
+                     "",
+                     [
+                        "#!/bin/bash -xe\n",
+                        "sudo yum install -y aws-cfn-bootstrap\n",
+                        "/opt/aws/bin/cfn-init -v ",
+                        "         --stack ",
+                        {
+                           "Ref":"AWS::StackName"
+                        },
+                        "         --resource EC2Instance ",
+                        "         --region ",
+                        {
+                           "Ref":"AWS::Region"
+                        },
+                        "\n"
+                     ]
+                  ]
+               }
             }
           }
       },
