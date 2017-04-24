@@ -49,7 +49,7 @@ I used Cloudformation for my solution, the resulting template is the WeltTestInf
 ## How to use
 
 1. Log in to AWS
-2. Create a key pair named 'WeltKP' (you can do this by navigating to the EC2 service and select the 'Key Pair' option under the 'Network & Security' section)
+2. Create a key pair named 'WeltKP' (you can do this by navigating to the EC2 service and select the 'Key Pair' option under the 'Network & Security' section. Also note that key pairs are region based, so it has to be created in the same region where you want to create the stack.)
 3. Navigate to the Cloudformation service
 4. Select the region where you want your resources to be created
 5. Select the 'Create Stack' option
