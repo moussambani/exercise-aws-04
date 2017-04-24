@@ -41,3 +41,21 @@ Pre-install `docker` software on the instance. When `docker run -d -p80:80 -p443
 2. Commit everything that you do in your fork
 3. Give us a link to your fork
 4. Provide meaningful comments with your commits
+
+#Solution
+
+I used Cloudformation for my solution, the resulting template is the WeltTestInfrastructure.template file in the repo root.
+
+##How to use
+
+1. Log in to AWS
+2. Create a key pair named 'WeltKP' (you can do this by navigating to the EC2 service and select the 'Key Pair' option under the 'Network & Security' section)
+3. Navigate to the Cloudformation service
+4. Select the region where you want your resources to be created
+5. Select the 'Create Stack' option
+6. Select the upload template option, and upload the WeltTestInfrastructure.template file, then click next
+7. Choose a name for your stack, and define a valid CIDR address for SSH access
+8. On the options page click next
+9. Review your template and click create
+
+After completing the above steps AWS needs a couple of minutes to create all your resources. Note that even after you're able to log in to your EC2 instance, Docker may need some time to finish installation.
