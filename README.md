@@ -42,11 +42,11 @@ Pre-install `docker` software on the instance. When `docker run -d -p80:80 -p443
 3. Give us a link to your fork
 4. Provide meaningful comments with your commits
 
-#Solution
+##Solution
 
 I used Cloudformation for my solution, the resulting template is the WeltTestInfrastructure.template file in the repo root.
 
-##How to use
+###How to use
 
 1. Log in to AWS
 2. Create a key pair named 'WeltKP' (you can do this by navigating to the EC2 service and select the 'Key Pair' option under the 'Network & Security' section)
